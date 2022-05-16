@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/yoavtamirp/RiderProjects/web-service-api/web-service-api/web-service-api.csproj": {}
+    "C:\\Users\\yahel\\OneDrive\\מסמכים\\EP2\\web-service-api-yoav-git\\web-service-api\\web-service-api.csproj": {}
   },
   "projects": {
-    "/Users/yoavtamirp/RiderProjects/web-service-api/web-service-api/web-service-api.csproj": {
+    "C:\\Users\\yahel\\OneDrive\\מסמכים\\EP2\\web-service-api-yoav-git\\web-service-api\\web-service-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/yoavtamirp/RiderProjects/web-service-api/web-service-api/web-service-api.csproj",
+        "projectUniqueName": "C:\\Users\\yahel\\OneDrive\\מסמכים\\EP2\\web-service-api-yoav-git\\web-service-api\\web-service-api.csproj",
         "projectName": "web-service-api",
-        "projectPath": "/Users/yoavtamirp/RiderProjects/web-service-api/web-service-api/web-service-api.csproj",
-        "packagesPath": "/Users/yoavtamirp/.nuget/packages/",
-        "outputPath": "/Users/yoavtamirp/RiderProjects/web-service-api/web-service-api/obj/",
+        "projectPath": "C:\\Users\\yahel\\OneDrive\\מסמכים\\EP2\\web-service-api-yoav-git\\web-service-api\\web-service-api.csproj",
+        "packagesPath": "C:\\Users\\yahel\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\yahel\\OneDrive\\מסמכים\\EP2\\web-service-api-yoav-git\\web-service-api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/yoavtamirp/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\yahel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,6 +40,24 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "EntityFramework.DynamicFilters": {
+              "target": "Package",
+              "version": "[3.2.4, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.0-preview.3.22175.1, )"
+            },
+            "Microsoft.EntityFrameworkcore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
@@ -61,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/Users/yoavtamirp/.dotnet/sdk/6.0.202/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
