@@ -60,13 +60,40 @@ namespace web_service_api.Controllers
                 created = DateTime.Now,
                 sender = _user.UserName,
                 reciver = id,
+                mediaType = "text"
                 
         };
             await _messageService.add(_user, message);
 
         }
 
-        [HttpGet("{id}/messages/id2")]
+        [HttpPost("{id}/messagesType")]
+        public async Task addMessageWithType(string id, [FromBody] string contant, string type )
+        {
+            var message = new Message()
+            {
+                content = contant,
+                created = DateTime.Now,
+                sender = _user.UserName,
+                reciver = id,
+                mediaType = type
+
+            };
+            await _messageService.add(_user, message);
+
+        }
+
+        [HttpGet("{id}/messages/{messageId}/type")]
+        public async Task<string?> getMessageType(string id, int messageId)
+        {
+            var message = await _messageService.getSpecificMessage(messageId);
+            if (message != null)
+            {
+                return message.mediaType;
+            }return null;
+        }
+
+        [HttpGet("{id}/messages/{messageId}")]
         public async Task<getByApiMessage> getSpecificMessage(string id, int messageId)
         {
             var message = await _messageService.getSpecificMessage(messageId);
@@ -85,13 +112,13 @@ namespace web_service_api.Controllers
 
         }
 
-        [HttpPut("{id}/messages/id2")]
+        [HttpPut("{id}/messages/{messageId}")]
         public async Task changeMessage(string id, int messageId, [FromBody] string contant)
         {
             await _messageService.changeSpecificMessage(messageId, contant);
         }
 
-        [HttpDelete("{id}/messages/id2")]
+        [HttpDelete("{id}/messages/{messageId}")]
         public async Task deleteMessage(string id, int messageId)
         {
             await _messageService.remove(messageId);
