@@ -22,7 +22,7 @@ namespace web_service_api.Services
         }
         public async Task<ICollection<Contact>?> getContacts(User _user)
         {
-            var contacts = await _context.Contacts.Where(x => x.myContact == _user.UserName).ToListAsync();
+            var contacts = await _context.Contacts.Where(x => x.myContact == _user.UserName).OrderBy(x => x.lastdate).ToListAsync();
             return contacts;
         }
 
