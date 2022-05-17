@@ -8,9 +8,11 @@ namespace web_service_api.Controllers
     [Route("[controller]")]
     public class MessageController : ControllerBase
     {
-        private static User _user;
+      
 
         private static IMessagesService _messageService;
+
+        private static IConnectedUserService _user;
 
         public class getByApiMessage
         {
@@ -20,14 +22,9 @@ namespace web_service_api.Controllers
             public bool sent { get; set; }
         }
 
-        public MessageController(IMessagesService messageService)
+        public MessageController(IMessagesService messageService, IConnectedUserService connectedUserService)
         {
-            _user = new User()
-            {
-                UserName = "YahelJacoby",
-                NickName = "Yahel",
-                Password = "123a"
-            };
+            _user = connectedUserService;
             _messageService = messageService;
 
         }
@@ -35,12 +32,12 @@ namespace web_service_api.Controllers
         [HttpGet("{id}/messages")]
         public async Task<ICollection<getByApiMessage>?> getAllMessages(string id)
         {
-            var messages = await _messageService.getMessagesOfUser(_user, id);
+            var messages = await _messageService.getMessagesOfUser(_user.GetUser(), id);
             ICollection<getByApiMessage> result = new List<getByApiMessage>();
             foreach (Message message in messages)
             {
                 bool isSent;
-                if (message.sender == _user.UserName)
+                if (message.sender == _user.GetUser().UserName)
                 {
                     isSent = true;
                 }
@@ -58,12 +55,12 @@ namespace web_service_api.Controllers
             {
                 content = contant,
                 created = DateTime.Now,
-                sender = _user.UserName,
+                sender = _user.GetUser().UserName,
                 reciver = id,
                 mediaType = "text"
                 
         };
-            await _messageService.add(_user, message);
+            await _messageService.add(_user.GetUser(), message);
 
         }
 
@@ -74,12 +71,12 @@ namespace web_service_api.Controllers
             {
                 content = contant,
                 created = DateTime.Now,
-                sender = _user.UserName,
+                sender = _user.GetUser().UserName,
                 reciver = id,
                 mediaType = type
 
             };
-            await _messageService.add(_user, message);
+            await _messageService.add(_user.GetUser(), message);
 
         }
 
@@ -99,8 +96,12 @@ namespace web_service_api.Controllers
             var message = await _messageService.getSpecificMessage(messageId);
             if (message != null)
             {
+                if ((message.sender != id && message.reciver != id) || (message.sender != _user.GetUser().UserName && message.reciver != _user.GetUser().UserName))
+                {
+                    return null;
+                }
                 bool isSent;
-                if (message.sender == _user.UserName)
+                if (message.sender == _user.GetUser().UserName)
                 {
                     isSent = true;
                 }
@@ -115,12 +116,28 @@ namespace web_service_api.Controllers
         [HttpPut("{id}/messages/{messageId}")]
         public async Task changeMessage(string id, int messageId, [FromBody] string contant)
         {
+            var message = await _messageService.getSpecificMessage(messageId);
+            if (message != null)
+            {
+                if ((message.sender != id && message.reciver != id) || ( message.sender != _user.GetUser().UserName && message.reciver != _user.GetUser().UserName))
+                {
+                    return;
+                }
+            }
             await _messageService.changeSpecificMessage(messageId, contant);
         }
 
         [HttpDelete("{id}/messages/{messageId}")]
         public async Task deleteMessage(string id, int messageId)
         {
+            var message = await _messageService.getSpecificMessage(messageId);
+            if (message != null)
+            {
+                if ((message.sender != id && message.reciver != id) || (message.sender != _user.GetUser().UserName && message.reciver != _user.GetUser().UserName))
+                {
+                    return;
+                }
+            }
             await _messageService.remove(messageId);
         }
 
