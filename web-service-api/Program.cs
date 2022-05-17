@@ -11,9 +11,19 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<WebServiceContext>();
 builder.Services.AddScoped<ContactInterface, ContactService>();
-builder.Services.AddScoped<IMessagesService,MessageService>();
+builder.Services.AddScoped<IMessagesService, MessageService>();
 builder.Services.AddScoped<IUsersService, UserService>();
 builder.Services.AddScoped<WebServiceContext>();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Allow All",
+        builder =>
+        {
+            builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+        });
+
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,6 +32,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("Allow All");
 
 app.UseHttpsRedirection();
 

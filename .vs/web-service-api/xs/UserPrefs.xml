@@ -1,0 +1,31 @@
+﻿<Properties StartupConfiguration="{3EB5F525-A206-46FE-9FFE-2B56A635AFB8}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="web-service-api/Program.cs">
+    <Files>
+      <File FileName="web-service-api/Program.cs" Line="16" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="web-service-api" expanded="True">
+            <Node name="web-service-api" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="Services" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.web-service-api PreferredExecutionTarget="/Applications/Google Chrome.app" />
+</Properties>
