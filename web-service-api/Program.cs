@@ -12,6 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<WebServiceContext>();
 builder.Services.AddScoped<ContactInterface, ContactService>();
 builder.Services.AddScoped<IMessagesService,MessageService>();
+builder.Services.AddScoped<IUsersService, UserService>();
 builder.Services.AddScoped<WebServiceContext>();
 var app = builder.Build();
 

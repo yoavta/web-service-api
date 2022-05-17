@@ -2,7 +2,7 @@
 {
     public interface IMessagesService
     {
-        public Task add(Message message);
+        public Task add(User user, Message message);
         public Task remove(int messageId);
 
         public Task<ICollection<Message>?> getMessagesOfUser(User user, string id);

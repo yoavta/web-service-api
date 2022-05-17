@@ -57,6 +57,17 @@ namespace web_service_api.Services
             else return null;
         }
 
+        public async Task ChangeLast(User user, string contant, DateTime created, string id)
+        {
+            var contact = await getContactById(user, id);
+            contact.lastdate = created;
+            contact.last = contant;
+            if( await deleteContact(user, id) == true)
+            {
+                await AddContact(user, contact);
+            }
+        }
+
 
         public async Task<bool> deleteContact(User _user, string id)
         {

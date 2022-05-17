@@ -8,7 +8,7 @@ public class User
 
     public string Password { get; set; }
 
-    public string PictureUrl { get; set; }     
+    public string? PictureUrl { get; set; }     
     
     
     /*public List<Chat> Chats { get; set;}*/

@@ -19,6 +19,8 @@ namespace web_service_api.Services
 
         public Task<int> getSize();
 
+        public Task ChangeLast(User user, string contant, DateTime created, string id);
+
 
 
     }

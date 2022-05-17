@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,34 +15,45 @@ namespace web_service_api.Services
             _context = context;
         }
 
-    public Task<ICollection<User>?> addUser(User user)
+    public async Task addUser(User user)
         {
-            throw new NotImplementedException();
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
+
         }
 
-        public Task<bool> checkValidPassword(string userName, string password)
+        public async Task<bool> checkValidPassword(string userName, string password)
         {
-            throw new NotImplementedException();
+            var user = await getUser(userName);
+            if (user != null)
+            {
+                if (user.Password == password)
+                {
+                    return true;
+                }
+                
+
+            }return false;
+            
         }
 
-        public Task<User?> getUser(string UserName)
+        public async Task<User?> getUser(string UserName)
         {
-            throw new NotImplementedException();
+            var user = await _context.Users.FindAsync(UserName);
+            if (user != null)
+            {
+                return user;
+            }
+            else return null;
+            
         }
 
-        public Task<ICollection<User>?> getUsers()
+        public async Task<ICollection<User>?> getUsers()
         {
-            throw new NotImplementedException();
+            var users = await _context.Users.ToListAsync();
+            return users;
         }
 
-        public Task<string> getUserUrl(string userName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> isUserExist(string userName)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

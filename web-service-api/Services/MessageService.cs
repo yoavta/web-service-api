@@ -12,26 +12,35 @@ namespace web_service_api.Services
     {
 
         private readonly WebServiceContext _context;
-        public MessageService(WebServiceContext context)
+        private readonly ContactInterface _contactService;
+        public MessageService(WebServiceContext context, ContactInterface contactService)
         {
 
             _context = context;
-
+            _contactService = contactService;
 
         }
-        public async Task add(Message message)
+        public async Task add(User user, Message message)
         {
             
             await _context.Messages.AddAsync(message);
             await _context.SaveChangesAsync();
+            string id;
+            if (user.UserName == message.sender)
+            {
+                id = message.reciver;
+            } else id = message.sender;
+            await _contactService.ChangeLast(user, message.content, message.created, id);
+
         }
 
-        public async Task changeSpecificMessage(int messageId, string contnt)
+        public async Task changeSpecificMessage( int messageId, string contnt)
         {
             var message = await getSpecificMessage(messageId);
             await remove(messageId);
             message.content = contnt;
-            await add(message);
+            await _context.Messages.AddAsync(message);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<ICollection<Message>?> getMessagesOfUser(User user, string id)

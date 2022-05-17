@@ -62,7 +62,7 @@ namespace web_service_api.Controllers
                 reciver = id,
                 
         };
-            await _messageService.add(message);
+            await _messageService.add(_user, message);
 
         }
 
