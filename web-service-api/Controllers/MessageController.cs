@@ -96,6 +96,10 @@ namespace web_service_api.Controllers
             var message = await _messageService.getSpecificMessage(messageId);
             if (message != null)
             {
+                if ((message.sender != id && message.reciver != id) || (message.sender != _user.GetUser().UserName && message.reciver != _user.GetUser().UserName))
+                {
+                    return null;
+                }
                 bool isSent;
                 if (message.sender == _user.GetUser().UserName)
                 {
@@ -112,12 +116,28 @@ namespace web_service_api.Controllers
         [HttpPut("{id}/messages/{messageId}")]
         public async Task changeMessage(string id, int messageId, [FromBody] string contant)
         {
+            var message = await _messageService.getSpecificMessage(messageId);
+            if (message != null)
+            {
+                if ((message.sender != id && message.reciver != id) || ( message.sender != _user.GetUser().UserName && message.reciver != _user.GetUser().UserName))
+                {
+                    return;
+                }
+            }
             await _messageService.changeSpecificMessage(messageId, contant);
         }
 
         [HttpDelete("{id}/messages/{messageId}")]
         public async Task deleteMessage(string id, int messageId)
         {
+            var message = await _messageService.getSpecificMessage(messageId);
+            if (message != null)
+            {
+                if ((message.sender != id && message.reciver != id) || (message.sender != _user.GetUser().UserName && message.reciver != _user.GetUser().UserName))
+                {
+                    return;
+                }
+            }
             await _messageService.remove(messageId);
         }
 
