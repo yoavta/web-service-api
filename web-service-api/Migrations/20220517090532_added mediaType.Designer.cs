@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using web_service_api;
 
@@ -10,9 +11,10 @@ using web_service_api;
 namespace web_service_api.Migrations
 {
     [DbContext(typeof(WebServiceContext))]
-    partial class WebServiceContextModelSnapshot : ModelSnapshot
+    [Migration("20220517090532_added mediaType")]
+    partial class addedmediaType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

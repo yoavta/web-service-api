@@ -11,6 +11,8 @@ public class Message
     public string reciver { get; set; }
     
     public string content { get; set; }
+
+    public string mediaType { get; set;}
     
 }
 }
