@@ -80,14 +80,34 @@ namespace web_service_api.Controllers
 
         }
 
-        [HttpGet("{id}/messages/{messageId}/type")]
-        public async Task<string?> getMessageType(string id, int messageId)
+        [HttpGet("{id}/messagesType")]
+        public async Task<ICollection<Message>?> getMessagesType(string id)
+        {
+            var messages = await _messageService.getMessagesOfUser(_user.GetUser(), id);
+            return messages;
+        }
+
+        [HttpGet("{id}/messagesType/{messageId}")]
+        public async Task<Message?> getSpecificMessageType(string id, int messageId)
         {
             var message = await _messageService.getSpecificMessage(messageId);
             if (message != null)
             {
-                return message.mediaType;
-            }return null;
+                if ((message.sender != id && message.reciver != id) || (message.sender != _user.GetUser().UserName && message.reciver != _user.GetUser().UserName))
+                {
+                    return null;
+                }
+                bool isSent;
+                if (message.sender == _user.GetUser().UserName)
+                {
+                    isSent = true;
+                }
+                else isSent = false;
+                return message;
+            }
+            else return null;
+
+
         }
 
         [HttpGet("{id}/messages/{messageId}")]
