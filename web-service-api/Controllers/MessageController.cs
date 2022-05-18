@@ -65,17 +65,10 @@ namespace web_service_api.Controllers
         }
 
         [HttpPost("{id}/messagesType")]
-        public async Task addMessageWithType(string id, [FromBody] string contant, string type )
+        public async Task addMessageWithType(string id, [FromBody] Message message )
         {
-            var message = new Message()
-            {
-                content = contant,
-                created = DateTime.Now,
-                sender = _user.GetUser().UserName,
-                reciver = id,
-                mediaType = type
-
-            };
+            message.created = DateTime.Now;
+            
             await _messageService.add(_user.GetUser(), message);
 
         }
