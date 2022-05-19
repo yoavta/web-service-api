@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace web_service_api.Services
 {
-    public class ContactService : ContactInterface
+    public class ContactService : IContactService
     {
       
 
@@ -20,15 +20,15 @@ namespace web_service_api.Services
 
 
         }
-        public async Task<ICollection<Contact>?> getContacts(User _user)
+        public async Task<ICollection<Contact>?> getContacts(string user)
         {
-            var contacts = await _context.Contacts.Where(x => x.myContact == _user.UserName).OrderBy(x => x.lastdate).ToListAsync();
+            var contacts = await _context.Contacts.Where(x => x.myContact == user).OrderBy(x => x.lastdate).ToListAsync();
             return contacts;
         }
 
-        public async Task<Contact?> getContactById(User _user, string id)
+        public async Task<Contact?> getContactById(string user, string id)
         {
-            var contacts = await getContacts(_user);
+            var contacts = await getContacts(user);
             if (contacts !=  null)
             {
                 var contact = contacts.Where(x => x.id == id).FirstOrDefault();
@@ -39,50 +39,39 @@ namespace web_service_api.Services
 
         }
 
-        public async Task<Contact?> AddContact(User _user,Contact contact)
+        public async Task AddContact(Contact contact)
         {
             await _context.Contacts.AddAsync(contact);
             await _context.SaveChangesAsync();
-            return await getContactById(_user, contact.id);
+            
         }
 
-        public async Task<Contact?> ChangeContact(User _user, Contact contact, string id)
+        public async Task ChangeContact(string _user, Contact contact, string id)
         {
-            if (await deleteContact(_user,id) == true)
-            {
-                var newContact = await AddContact(_user,contact);
-                return newContact;
-            }
-
-            else return null;
+            await deleteContact(_user, id);
+            
         }
 
-        public async Task ChangeLast(User user, string contant, DateTime created, string id)
+        public async Task ChangeLast(string user, string contant, DateTime created, string id)
         {
             var contact = await getContactById(user, id);
             contact.lastdate = created;
             contact.last = contant;
-            if( await deleteContact(user, id) == true)
-            {
-                await AddContact(user, contact);
-            }
+            await deleteContact(user, id); 
+            await AddContact(contact);
         }
 
 
-        public async Task<bool> deleteContact(User _user, string id)
+        public async Task deleteContact(string _user, string id)
         {
             var contact = await getContactById(_user, id);
             if (contact != null)
             {
                 var removed = _context.Contacts.Remove(contact);
                 await _context.SaveChangesAsync();
-                if (removed != null)
-                {
-                    return true;
-                }
-                
+                                
             }
-            return false;
+            
            
         }
 

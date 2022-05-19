@@ -7,7 +7,7 @@ namespace web_service_api.Controllers
 
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/contacts")]
     public class ContactsController : ControllerBase
     {
         public class ContactForAdd
@@ -48,11 +48,11 @@ namespace web_service_api.Controllers
 
         
 
-        private static ContactInterface _contactService;
+        private static IContactService _contactService;
 
         private static IConnectedUserService _user;
 
-        public ContactsController(ContactInterface contactInterface, IConnectedUserService connectedUserService)
+        public ContactsController(IContactService contactInterface, IConnectedUserService connectedUserService)
         {
             _user = connectedUserService;
             _contactService = contactInterface;
@@ -62,7 +62,7 @@ namespace web_service_api.Controllers
         [HttpGet]
         public async Task<ICollection<ReturnContact>?> GetContact()
         {
-            var contacts = await _contactService.getContacts(_user.GetUser());
+            var contacts = await _contactService.getContacts(_user.GetUser().UserName);
             ICollection<ReturnContact> result = new List<ReturnContact>();
             foreach ( Contact contact in contacts)
             {
@@ -92,7 +92,7 @@ namespace web_service_api.Controllers
             newContact.server = contactPayload.Server;
             newContact.name = contactPayload.Name;
             newContact.id = contactPayload.Id;
-            await _contactService.AddContact(_user.GetUser(), newContact);
+            await _contactService.AddContact(newContact);
 
         }
 
@@ -104,7 +104,7 @@ namespace web_service_api.Controllers
             {
                 return null;
             }
-            var contact = await _contactService.getContactById(_user.GetUser(), id);
+            var contact = await _contactService.getContactById(_user.GetUser().UserName, id);
             if (contact != null)
             {
                 return new ReturnContact() { Id = contact.id, last = contact.last, lastdate = contact.lastdate, Name = contact.name, Server = contact.server };
@@ -121,7 +121,7 @@ namespace web_service_api.Controllers
             Contact newContact = new Contact();
             if (id != null)
             {
-                var oldContact = await _contactService.getContactById(_user.GetUser(), id);               
+                var oldContact = await _contactService.getContactById(_user.GetUser().UserName, id);               
                 
                 
                 if (contactPayload.Server == "string")
@@ -140,7 +140,7 @@ namespace web_service_api.Controllers
                 newContact.lastdate = oldContact.lastdate;
                 newContact.last = oldContact.last;
                 newContact.myContact = _user.GetUser().UserName;
-                await _contactService.ChangeContact(_user.GetUser(), newContact, id);
+                await _contactService.ChangeContact(_user.GetUser().UserName, newContact, id);
 
 
             }
@@ -149,7 +149,7 @@ namespace web_service_api.Controllers
         [HttpDelete("{id}")]
         public async Task Delete(string? id)
         {
-            await _contactService.deleteContact(_user.GetUser(), id);
+            await _contactService.deleteContact(_user.GetUser().UserName, id);
         }
 
     }

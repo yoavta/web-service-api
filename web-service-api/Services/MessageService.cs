@@ -12,21 +12,21 @@ namespace web_service_api.Services
     {
 
         private readonly WebServiceContext _context;
-        private readonly ContactInterface _contactService;
-        public MessageService(WebServiceContext context, ContactInterface contactService)
+        private readonly IContactService _contactService;
+        public MessageService(WebServiceContext context, IContactService contactService)
         {
 
             _context = context;
             _contactService = contactService;
 
         }
-        public async Task add(User user, Message message)
+        public async Task add(string user, Message message)
         {
             
             await _context.Messages.AddAsync(message);
             await _context.SaveChangesAsync();
             string id;
-            if (user.UserName == message.sender)
+            if (user == message.sender)
             {
                 id = message.reciver;
             } else id = message.sender;

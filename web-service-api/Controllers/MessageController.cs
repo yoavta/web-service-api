@@ -5,7 +5,7 @@ using web_service_api.Services;
 namespace web_service_api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/messages")]
     public class MessageController : ControllerBase
     {
       
@@ -60,7 +60,7 @@ namespace web_service_api.Controllers
                 mediaType = "text"
                 
         };
-            await _messageService.add(_user.GetUser(), message);
+            await _messageService.add(_user.GetUser().UserName, message);
 
         }
 
@@ -69,7 +69,7 @@ namespace web_service_api.Controllers
         {
             message.created = DateTime.Now;
             
-            await _messageService.add(_user.GetUser(), message);
+            await _messageService.add(_user.GetUser().UserName, message);
 
         }
 
@@ -80,10 +80,10 @@ namespace web_service_api.Controllers
             return messages;
         }
 
-        [HttpGet("{id}/messagesType/{messageId}")]
-        public async Task<Message?> getSpecificMessageType(string id, int messageId)
+        [HttpGet("{id}/messagesType/{id2}")]
+        public async Task<Message?> getSpecificMessageType(string id, int id2)
         {
-            var message = await _messageService.getSpecificMessage(messageId);
+            var message = await _messageService.getSpecificMessage(id2);
             if (message != null)
             {
                 if ((message.sender != id && message.reciver != id) || (message.sender != _user.GetUser().UserName && message.reciver != _user.GetUser().UserName))
@@ -103,10 +103,10 @@ namespace web_service_api.Controllers
 
         }
 
-        [HttpGet("{id}/messages/{messageId}")]
-        public async Task<getByApiMessage> getSpecificMessage(string id, int messageId)
+        [HttpGet("{id}/messages/{id2}")]
+        public async Task<getByApiMessage> getSpecificMessage(string id, int id2)
         {
-            var message = await _messageService.getSpecificMessage(messageId);
+            var message = await _messageService.getSpecificMessage(id2);
             if (message != null)
             {
                 if ((message.sender != id && message.reciver != id) || (message.sender != _user.GetUser().UserName && message.reciver != _user.GetUser().UserName))
@@ -126,10 +126,10 @@ namespace web_service_api.Controllers
 
         }
 
-        [HttpPut("{id}/messages/{messageId}")]
-        public async Task changeMessage(string id, int messageId, [FromBody] string contant)
+        [HttpPut("{id}/messages/{id2}")]
+        public async Task changeMessage(string id, int id2, [FromBody] string contant)
         {
-            var message = await _messageService.getSpecificMessage(messageId);
+            var message = await _messageService.getSpecificMessage(id2);
             if (message != null)
             {
                 if ((message.sender != id && message.reciver != id) || ( message.sender != _user.GetUser().UserName && message.reciver != _user.GetUser().UserName))
@@ -137,13 +137,13 @@ namespace web_service_api.Controllers
                     return;
                 }
             }
-            await _messageService.changeSpecificMessage(messageId, contant);
+            await _messageService.changeSpecificMessage(id2, contant);
         }
 
-        [HttpDelete("{id}/messages/{messageId}")]
-        public async Task deleteMessage(string id, int messageId)
+        [HttpDelete("{id}/messages/{id2}")]
+        public async Task deleteMessage(string id, int id2)
         {
-            var message = await _messageService.getSpecificMessage(messageId);
+            var message = await _messageService.getSpecificMessage(id2);
             if (message != null)
             {
                 if ((message.sender != id && message.reciver != id) || (message.sender != _user.GetUser().UserName && message.reciver != _user.GetUser().UserName))
@@ -151,7 +151,7 @@ namespace web_service_api.Controllers
                     return;
                 }
             }
-            await _messageService.remove(messageId);
+            await _messageService.remove(id2);
         }
 
 
