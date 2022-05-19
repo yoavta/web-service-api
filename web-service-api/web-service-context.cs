@@ -5,7 +5,7 @@ namespace web_service_api
 {
     public class WebServiceContext : DbContext
     {
-        private const string connectionString = "server=localhost;port=3306;database=WebService;user=api;password=12345;";
+        private const string connectionString = "server=localhost;port=3306;database=WebService;user=root;";
         //private const string connectionString = "Server=(localdb)\\mssqllocaldb;Database=WhenUpDB;Trusted_Connection=True;MultipleActiveResultSets=true";
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

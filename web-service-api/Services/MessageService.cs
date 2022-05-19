@@ -30,7 +30,13 @@ namespace web_service_api.Services
             {
                 id = message.reciver;
             } else id = message.sender;
-            await _contactService.ChangeLast(user, message.content, message.created, id);
+            string contant;
+            if (message.mediaType == "text")
+            {
+                contant = message.content;
+            }
+            else contant = message.mediaType;
+            await _contactService.ChangeLast(user, contant, message.created, id);
 
         }
 
