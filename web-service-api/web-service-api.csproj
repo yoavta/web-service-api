@@ -17,10 +17,12 @@
         </PackageReference>
         <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="6.0.5" />
     </ItemGroup>
 
     <ItemGroup>
       <None Remove="Migrations\" />
+      <None Remove="Microsoft.EntityFrameworkCore.Analyzers" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Migrations\" />

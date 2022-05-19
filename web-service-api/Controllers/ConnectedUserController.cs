@@ -15,7 +15,7 @@ namespace web_service_api.Controllers
             _userService = usersService;
         }
 
-        [HttpGet]
+        [HttpPost]
         public bool connectUser(string userName)
         {
             var user = _userService.getUser(userName);
@@ -28,6 +28,12 @@ namespace web_service_api.Controllers
                 return true;
             }
             return false;
+        }
+
+        [HttpGet]
+        public User getConnectedUser()
+        {
+            return _ConnectedUserService.GetUser();
         }
 
         [HttpDelete]
