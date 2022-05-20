@@ -81,6 +81,31 @@ namespace web_service_api.Migrations
                     b.ToTable("Messages");
                 });
 
+            modelBuilder.Entity("web_service_api.Ranking", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Rank")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ranking");
+                });
+
             modelBuilder.Entity("web_service_api.User", b =>
                 {
                     b.Property<string>("UserName")

@@ -8,33 +8,33 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = web_service_api
 build_property.RootNamespace = web_service_api
-build_property.ProjectDir = C:\Users\yahel\OneDrive\מסמכים\EP2\web-service-api-yoav-git\web-service-api\
+build_property.ProjectDir = /Users/yoavtamirp/Desktop/University/advanced-programing-2/web-service-api/web-service-api/
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\yahel\OneDrive\מסמכים\EP2\web-service-api-yoav-git\web-service-api
+build_property.MSBuildProjectDirectory = /Users/yoavtamirp/Desktop/University/advanced-programing-2/web-service-api/web-service-api
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/yahel/OneDrive/מסמכים/EP2/web-service-api-yoav-git/web-service-api/Views/Rankings/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmFua2luZ3NcQ3JlYXRlLmNzaHRtbA==
+[/Users/yoavtamirp/Desktop/University/advanced-programing-2/web-service-api/web-service-api/Views/Rankings/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmFua2luZ3MvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/yahel/OneDrive/מסמכים/EP2/web-service-api-yoav-git/web-service-api/Views/Rankings/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmFua2luZ3NcRGVsZXRlLmNzaHRtbA==
+[/Users/yoavtamirp/Desktop/University/advanced-programing-2/web-service-api/web-service-api/Views/Rankings/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmFua2luZ3MvRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/yahel/OneDrive/מסמכים/EP2/web-service-api-yoav-git/web-service-api/Views/Rankings/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmFua2luZ3NcRGV0YWlscy5jc2h0bWw=
+[/Users/yoavtamirp/Desktop/University/advanced-programing-2/web-service-api/web-service-api/Views/Rankings/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmFua2luZ3MvRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/yahel/OneDrive/מסמכים/EP2/web-service-api-yoav-git/web-service-api/Views/Rankings/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmFua2luZ3NcRWRpdC5jc2h0bWw=
+[/Users/yoavtamirp/Desktop/University/advanced-programing-2/web-service-api/web-service-api/Views/Rankings/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmFua2luZ3MvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/yahel/OneDrive/מסמכים/EP2/web-service-api-yoav-git/web-service-api/Views/Rankings/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmFua2luZ3NcSW5kZXguY3NodG1s
+[/Users/yoavtamirp/Desktop/University/advanced-programing-2/web-service-api/web-service-api/Views/Rankings/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmFua2luZ3MvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/yahel/OneDrive/מסמכים/EP2/web-service-api-yoav-git/web-service-api/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[/Users/yoavtamirp/Desktop/University/advanced-programing-2/web-service-api/web-service-api/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

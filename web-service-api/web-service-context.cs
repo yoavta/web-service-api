@@ -5,7 +5,7 @@ namespace web_service_api
 {
     public class WebServiceContext : DbContext
     {
-        private const string connectionString = "server=localhost;port=3306;database=WebService;user=root;";
+        private const string connectionString = "server=localhost;port=3306;database=WebService;user=api;password=12345;";
         //private const string connectionString = "Server=(localdb)\\mssqllocaldb;Database=WhenUpDB;Trusted_Connection=True;MultipleActiveResultSets=true";
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -22,7 +22,7 @@ namespace web_service_api
             modelBuilder.Entity<Contact>().HasKey(e => e.key);
             modelBuilder.Entity<Message>().HasKey(e => e.id);
 
-            //modelBuilder.Entity<Ranking>().HasKey(e => e.Id);
+            modelBuilder.Entity<Ranking>().HasKey(e => e.Id);
 
 
             base.OnModelCreating(modelBuilder);
@@ -31,9 +31,9 @@ namespace web_service_api
         public DbSet<User> Users { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Message> Messages { get; set; }
-        public DbSet<web_service_api.Ranking>? Ranking { get; set; }
+        public DbSet<Ranking>? Ranking { get; set; }
 
-        //public DbSet<Ranking> Rankings { get; set; }
+        public DbSet<Ranking> Rankings { get; set; }
 
  
 

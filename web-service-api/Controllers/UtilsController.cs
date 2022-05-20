@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using web_service_api.Services;
-using web_service_api.Hubs;
+using web_service_api;
 
 namespace web_service_api.Controllers
 {
@@ -60,8 +60,6 @@ namespace web_service_api.Controllers
             }
             else await _contactService.ChangeLast(payload.from, payload.content, DateTime.Now, payload.to);
 
-
-            
             await _hub.render(payload.to);
         }
 

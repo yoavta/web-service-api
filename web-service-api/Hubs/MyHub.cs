@@ -1,12 +1,16 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 
-namespace web_service_api.Hubs
+namespace web_service_api
 {
     public class MyHub : Hub
     {
         public async Task render(string userName)
         {
-            await Clients.Group(userName).SendAsync("RenderPage");
+            if (Clients?.Group(userName)!= null)
+            {
+                await Clients.Group(userName).SendAsync("RenderPage");
+
+            }
         }
 
     }

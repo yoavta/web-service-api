@@ -10169,26 +10169,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\yahel\\.nuget\\packages\\": {}
+    "/Users/yoavtamirp/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yahel\\OneDrive\\מסמכים\\EP2\\web-service-api-yoav-git\\web-service-api\\web-service-api.csproj",
+      "projectUniqueName": "/Users/yoavtamirp/Desktop/University/advanced-programing-2/web-service-api/web-service-api/web-service-api.csproj",
       "projectName": "web-service-api",
-      "projectPath": "C:\\Users\\yahel\\OneDrive\\מסמכים\\EP2\\web-service-api-yoav-git\\web-service-api\\web-service-api.csproj",
-      "packagesPath": "C:\\Users\\yahel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yahel\\OneDrive\\מסמכים\\EP2\\web-service-api-yoav-git\\web-service-api\\obj\\",
+      "projectPath": "/Users/yoavtamirp/Desktop/University/advanced-programing-2/web-service-api/web-service-api/web-service-api.csproj",
+      "packagesPath": "/Users/yoavtamirp/.nuget/packages/",
+      "outputPath": "/Users/yoavtamirp/Desktop/University/advanced-programing-2/web-service-api/web-service-api/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\yahel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/yoavtamirp/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -10260,7 +10258,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.203/RuntimeIdentifierGraph.json"
       }
     }
   }
