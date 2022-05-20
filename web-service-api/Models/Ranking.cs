@@ -1,15 +1,18 @@
-﻿namespace web_service_api
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace web_service_api
 {
     public class Ranking
     {
-        public int id = default(int);
+        [Key]
+        public int Id { get; set; }
 
-        public DateTime created { get; set; }
+        public DateTime Created { get; set; }
 
-        public string name { get; set; }
+        public string Name { get; set; }
 
-        public string text { get; set; }
+        public string Text { get; set; }
 
-        public int rank { get; set; }
+        public int Rank { get; set; }
     }
 }
