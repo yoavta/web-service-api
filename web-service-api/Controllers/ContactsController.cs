@@ -62,7 +62,16 @@ namespace web_service_api.Controllers
         [HttpGet]
         public async Task<ICollection<ReturnContact>?> GetContact()
         {
-            var contacts = await _contactService.getContacts(_user.GetUser().UserName);
+            var userName = "";
+            Request.Headers.TryGetValue("connectedUser", out var connectedUser);
+            if (!connectedUser.Any())
+            {
+                userName = connectedUser[0];
+            }
+            else {
+                userName = _user.GetUser().UserName;
+            }
+            var contacts = await _contactService.getContacts(userName);
             ICollection<ReturnContact> result = new List<ReturnContact>();
             foreach ( Contact contact in contacts)
             {
@@ -86,9 +95,19 @@ namespace web_service_api.Controllers
 
         public async Task Creat([FromBody] ContactForAdd contactPayload)
         {
+            var userName = "";
+            Request.Headers.TryGetValue("connectedUser", out var connectedUser);
+            if (!connectedUser.Any())
+            {
+                userName = connectedUser[0];
+            }
+            else
+            {
+                userName = _user.GetUser().UserName;
+            }
             Contact newContact = new Contact();
             
-            newContact.myContact = _user.GetUser().UserName;
+            newContact.myContact = userName;
             newContact.server = contactPayload.Server;
             newContact.name = contactPayload.Name;
             newContact.id = contactPayload.Id;
@@ -100,11 +119,24 @@ namespace web_service_api.Controllers
         [HttpGet("{id}")]
         public async Task<ReturnContact> DetailsOfContact(string? id)
         {
+            var userName = "";
+            Request.Headers.TryGetValue("connectedUser", out var connectedUser);
+            if (!connectedUser.Any())
+            {
+                userName = connectedUser[0];
+            }
+            else
+            {
+                userName = _user.GetUser().UserName;
+            }
+
+
+
             if (id == null)
             {
                 return null;
             }
-            var contact = await _contactService.getContactById(_user.GetUser().UserName, id);
+            var contact = await _contactService.getContactById(userName, id);
             if (contact != null)
             {
                 return new ReturnContact() { Id = contact.id, last = contact.last, lastdate = contact.lastdate, Name = contact.name, Server = contact.server };
@@ -118,10 +150,23 @@ namespace web_service_api.Controllers
         [HttpPut("{id}")]
         public async Task Change([FromBody] ContactForChange contactPayload, string id)
         {
+
+            var userName = "";
+            Request.Headers.TryGetValue("connectedUser", out var connectedUser);
+            if (!connectedUser.Any())
+            {
+                userName = connectedUser[0];
+            }
+            else
+            {
+                userName = _user.GetUser().UserName;
+            }
+
+
             Contact newContact = new Contact();
             if (id != null)
             {
-                var oldContact = await _contactService.getContactById(_user.GetUser().UserName, id);               
+                var oldContact = await _contactService.getContactById(userName, id);               
                 
                 
                 if (contactPayload.Server == "string")
@@ -139,8 +184,8 @@ namespace web_service_api.Controllers
                 newContact.id = oldContact.id;
                 newContact.lastdate = oldContact.lastdate;
                 newContact.last = oldContact.last;
-                newContact.myContact = _user.GetUser().UserName;
-                await _contactService.ChangeContact(_user.GetUser().UserName, newContact, id);
+                newContact.myContact = userName;
+                await _contactService.ChangeContact(userName, newContact, id);
 
 
             }

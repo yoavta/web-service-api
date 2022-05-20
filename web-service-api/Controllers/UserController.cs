@@ -19,6 +19,7 @@ namespace web_service_api.Controllers
         [HttpGet]
         public async Task<ICollection<User>?> getAllUser()
         {
+
             var users = await _userService.getUsers();
             return users;
         }

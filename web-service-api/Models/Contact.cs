@@ -2,6 +2,9 @@ namespace web_service_api
 {
 public class Contact
 {
+
+
+
     public string myContact { get; set; }
 
     public string id { get; set; }

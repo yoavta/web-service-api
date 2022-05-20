@@ -13,6 +13,7 @@ namespace web_service_api.Controllers
         private static IMessagesService _messageService;
 
         private static IConnectedUserService _user;
+        private static IUsersService _userService;
 
         public class getByApiMessage
         {
@@ -22,17 +23,30 @@ namespace web_service_api.Controllers
             public bool sent { get; set; }
         }
 
-        public MessageController(IMessagesService messageService, IConnectedUserService connectedUserService)
+        public MessageController(IMessagesService messageService, IConnectedUserService connectedUserService, IUsersService usersService)
         {
             _user = connectedUserService;
             _messageService = messageService;
+            _userService = usersService;
 
         }
 
         [HttpGet("{id}/messages")]
         public async Task<ICollection<getByApiMessage>?> getAllMessages(string id)
         {
-            var messages = await _messageService.getMessagesOfUser(_user.GetUser(), id);
+
+            User userConnected = _user.GetUser();
+
+            Request.Headers.TryGetValue("connectedUser", out var connectedUser);
+            if (!connectedUser.Any())
+            {
+                userConnected = await _userService.getUser(connectedUser[0]);
+            }
+         
+
+
+
+            var messages = await _messageService.getMessagesOfUser(userConnected, id);
             ICollection<getByApiMessage> result = new List<getByApiMessage>();
             foreach (Message message in messages)
             {
@@ -48,50 +62,100 @@ namespace web_service_api.Controllers
             return result;
         }
 
+
+
         [HttpPost("{id}/messages")]
         public async Task addMessage(string id, [FromBody] string contant)
         {
+
+            string userName;
+            Request.Headers.TryGetValue("connectedUser", out var connectedUser);
+            if (!connectedUser.Any())
+            {
+                userName = connectedUser[0];
+            }
+            else
+            {
+                userName = _user.GetUser().UserName;
+            }
+
+
             var message = new Message()
             {
                 content = contant,
                 created = DateTime.Now,
-                sender = _user.GetUser().UserName,
+                sender = userName,
                 reciver = id,
                 mediaType = "text"
                 
         };
-            await _messageService.add(_user.GetUser().UserName, message);
+            await _messageService.add(userName, message);
 
         }
 
         [HttpPost("{id}/messagesType")]
         public async Task addMessageWithType(string id, [FromBody] Message message )
         {
+
+            string userName;
+            Request.Headers.TryGetValue("connectedUser", out var connectedUser);
+            if (!connectedUser.Any())
+            {
+                userName = connectedUser[0];
+            }
+            else
+            {
+                userName = _user.GetUser().UserName;
+            }
+
+
+
             message.created = DateTime.Now;
             
-            await _messageService.add(_user.GetUser().UserName, message);
+            await _messageService.add(userName, message);
 
         }
 
         [HttpGet("{id}/messagesType")]
         public async Task<ICollection<Message>?> getMessagesType(string id)
         {
-            var messages = await _messageService.getMessagesOfUser(_user.GetUser(), id);
+            User userConnected = _user.GetUser();
+
+            Request.Headers.TryGetValue("connectedUser", out var connectedUser);
+            if (!connectedUser.Any())
+            {
+                userConnected = await _userService.getUser(connectedUser[0]);
+            }
+
+            var messages = await _messageService.getMessagesOfUser(userConnected, id);
             return messages;
         }
 
         [HttpGet("{id}/messagesType/{id2}")]
         public async Task<Message?> getSpecificMessageType(string id, int id2)
         {
+
+            string userName;
+            Request.Headers.TryGetValue("connectedUser", out var connectedUser);
+            if (!connectedUser.Any())
+            {
+                userName = connectedUser[0];
+            }
+            else
+            {
+                userName = _user.GetUser().UserName;
+            }
+
+
             var message = await _messageService.getSpecificMessage(id2);
             if (message != null)
             {
-                if ((message.sender != id && message.reciver != id) || (message.sender != _user.GetUser().UserName && message.reciver != _user.GetUser().UserName))
+                if ((message.sender != id && message.reciver != id) || (message.sender != userName && message.reciver != userName))
                 {
                     return null;
                 }
                 bool isSent;
-                if (message.sender == _user.GetUser().UserName)
+                if (message.sender == userName)
                 {
                     isSent = true;
                 }
@@ -106,15 +170,29 @@ namespace web_service_api.Controllers
         [HttpGet("{id}/messages/{id2}")]
         public async Task<getByApiMessage> getSpecificMessage(string id, int id2)
         {
+
+            string userName;
+            Request.Headers.TryGetValue("connectedUser", out var connectedUser);
+            if (!connectedUser.Any())
+            {
+                userName = connectedUser[0];
+            }
+            else
+            {
+                userName = _user.GetUser().UserName;
+            }
+
+
+
             var message = await _messageService.getSpecificMessage(id2);
             if (message != null)
             {
-                if ((message.sender != id && message.reciver != id) || (message.sender != _user.GetUser().UserName && message.reciver != _user.GetUser().UserName))
+                if ((message.sender != id && message.reciver != id) || (message.sender != userName && message.reciver != userName))
                 {
                     return null;
                 }
                 bool isSent;
-                if (message.sender == _user.GetUser().UserName)
+                if (message.sender == userName)
                 {
                     isSent = true;
                 }
@@ -129,10 +207,23 @@ namespace web_service_api.Controllers
         [HttpPut("{id}/messages/{id2}")]
         public async Task changeMessage(string id, int id2, [FromBody] string contant)
         {
+            string userName;
+            Request.Headers.TryGetValue("connectedUser", out var connectedUser);
+            if (!connectedUser.Any())
+            {
+                userName = connectedUser[0];
+            }
+            else
+            {
+                userName = _user.GetUser().UserName;
+            }
+
+
+
             var message = await _messageService.getSpecificMessage(id2);
             if (message != null)
             {
-                if ((message.sender != id && message.reciver != id) || ( message.sender != _user.GetUser().UserName && message.reciver != _user.GetUser().UserName))
+                if ((message.sender != id && message.reciver != id) || ( message.sender != userName && message.reciver != userName))
                 {
                     return;
                 }
@@ -143,10 +234,23 @@ namespace web_service_api.Controllers
         [HttpDelete("{id}/messages/{id2}")]
         public async Task deleteMessage(string id, int id2)
         {
+
+            string userName;
+            Request.Headers.TryGetValue("connectedUser", out var connectedUser);
+            if (!connectedUser.Any())
+            {
+                userName = connectedUser[0];
+            }
+            else
+            {
+                userName = _user.GetUser().UserName;
+            }
+
+
             var message = await _messageService.getSpecificMessage(id2);
             if (message != null)
             {
-                if ((message.sender != id && message.reciver != id) || (message.sender != _user.GetUser().UserName && message.reciver != _user.GetUser().UserName))
+                if ((message.sender != id && message.reciver != id) || (message.sender != userName && message.reciver != userName))
                 {
                     return;
                 }
