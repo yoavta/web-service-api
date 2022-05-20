@@ -11,10 +11,12 @@
     <ItemGroup>
         <PackageReference Include="EntityFramework.DynamicFilters" Version="3.2.4" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
-        <PackageReference Include="Microsoft.EntityFrameworkcore.Tools" Version="6.0.1">
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
+        <PackageReference Include="Microsoft.EntityFrameworkcore.Tools" Version="6.0.5">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.4" />
         <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="6.0.5" />
@@ -26,6 +28,5 @@
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Migrations\" />
-      <Folder Include="Hubs\" />
     </ItemGroup>
 </Project>

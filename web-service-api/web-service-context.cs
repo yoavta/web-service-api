@@ -21,8 +21,9 @@ namespace web_service_api
             modelBuilder.Entity<User>().HasKey(e => e.UserName);
             modelBuilder.Entity<Contact>().HasKey(e => e.key);
             modelBuilder.Entity<Message>().HasKey(e => e.id);
-            //modelBuilder.Entity<Rating>().HasKey(e => e.Id);
-            
+
+            modelBuilder.Entity<Ranking>().HasKey(e => e.id);
+
 
             base.OnModelCreating(modelBuilder);
         }
@@ -30,6 +31,8 @@ namespace web_service_api
         public DbSet<User> Users { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Message> Messages { get; set; }
+
+        public DbSet<Ranking> Rankings { get; set; }
 
  
 
