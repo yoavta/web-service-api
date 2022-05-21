@@ -38,7 +38,7 @@ namespace web_service_api.Controllers
             User userConnected = _user.GetUser();
 
             Request.Headers.TryGetValue("connectedUser", out var connectedUser);
-            if (!connectedUser.Any())
+            if (connectedUser.Any())
             {
                 userConnected = await _userService.getUser(connectedUser[0]);
             }
@@ -70,7 +70,7 @@ namespace web_service_api.Controllers
 
             string userName;
             Request.Headers.TryGetValue("connectedUser", out var connectedUser);
-            if (!connectedUser.Any())
+            if (connectedUser.Any())
             {
                 userName = connectedUser[0];
             }
@@ -99,7 +99,7 @@ namespace web_service_api.Controllers
 
             string userName;
             Request.Headers.TryGetValue("connectedUser", out var connectedUser);
-            if (!connectedUser.Any())
+            if (connectedUser.Any())
             {
                 userName = connectedUser[0];
             }
@@ -119,12 +119,18 @@ namespace web_service_api.Controllers
         [HttpGet("{id}/messagesType")]
         public async Task<ICollection<Message>?> getMessagesType(string id)
         {
-            User userConnected = _user.GetUser();
 
+            User userConnected;
             Request.Headers.TryGetValue("connectedUser", out var connectedUser);
-            if (!connectedUser.Any())
+
+            if (connectedUser.Any())
             {
                 userConnected = await _userService.getUser(connectedUser[0]);
+            }
+
+            else
+            {
+                userConnected = _user.GetUser();
             }
 
             var messages = await _messageService.getMessagesOfUser(userConnected, id);
@@ -173,7 +179,7 @@ namespace web_service_api.Controllers
 
             string userName;
             Request.Headers.TryGetValue("connectedUser", out var connectedUser);
-            if (!connectedUser.Any())
+            if (connectedUser.Any())
             {
                 userName = connectedUser[0];
             }
@@ -209,7 +215,7 @@ namespace web_service_api.Controllers
         {
             string userName;
             Request.Headers.TryGetValue("connectedUser", out var connectedUser);
-            if (!connectedUser.Any())
+            if (connectedUser.Any())
             {
                 userName = connectedUser[0];
             }
@@ -237,7 +243,7 @@ namespace web_service_api.Controllers
 
             string userName;
             Request.Headers.TryGetValue("connectedUser", out var connectedUser);
-            if (!connectedUser.Any())
+            if (connectedUser.Any())
             {
                 userName = connectedUser[0];
             }

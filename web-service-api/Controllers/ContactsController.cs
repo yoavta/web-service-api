@@ -62,9 +62,9 @@ namespace web_service_api.Controllers
         [HttpGet]
         public async Task<ICollection<ReturnContact>?> GetContact()
         {
-            var userName = "";
+            string userName;
             Request.Headers.TryGetValue("connectedUser", out var connectedUser);
-            if (!connectedUser.Any())
+            if (connectedUser.Any())
             {
                 userName = connectedUser[0];
             }
@@ -97,7 +97,7 @@ namespace web_service_api.Controllers
         {
             var userName = "";
             Request.Headers.TryGetValue("connectedUser", out var connectedUser);
-            if (!connectedUser.Any())
+            if (connectedUser.Any())
             {
                 userName = connectedUser[0];
             }
@@ -121,7 +121,7 @@ namespace web_service_api.Controllers
         {
             var userName = "";
             Request.Headers.TryGetValue("connectedUser", out var connectedUser);
-            if (!connectedUser.Any())
+            if (connectedUser.Any())
             {
                 userName = connectedUser[0];
             }
@@ -153,7 +153,7 @@ namespace web_service_api.Controllers
 
             var userName = "";
             Request.Headers.TryGetValue("connectedUser", out var connectedUser);
-            if (!connectedUser.Any())
+            if (connectedUser.Any())
             {
                 userName = connectedUser[0];
             }

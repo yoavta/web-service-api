@@ -1,4 +1,5 @@
 using web_service_api;
+using web_service_api.Hubs;
 using web_service_api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,12 +10,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddTransient<WebServiceContext>();
 builder.Services.AddScoped<IContactService, ContactService>();
 builder.Services.AddScoped<IMessagesService,MessageService>();
 builder.Services.AddScoped<IUsersService, UserService>();
 builder.Services.AddScoped<IConnectedUserService, ConnectedUserService>();
-builder.Services.AddScoped<WebServiceContext>();
+builder.Services.AddDbContext<WebServiceContext>();
+
 builder.Services.AddMvcCore();
 builder.Services.AddSignalR();
 builder.Services.AddMvc();

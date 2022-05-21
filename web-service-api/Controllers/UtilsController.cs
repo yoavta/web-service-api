@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using web_service_api.Services;
-using web_service_api;
+using web_service_api.Hubs;
 
 namespace web_service_api.Controllers
 {
@@ -12,15 +12,13 @@ namespace web_service_api.Controllers
 
         private static IContactService _contactService;
 
-        private static MyHub _hub;
 
 
-        public UtilsController(IMessagesService messageService, IContactService contactService )
+        public UtilsController(IMessagesService messageService, IContactService contactService)
         {
             
             _messageService = messageService;
             _contactService = contactService;
-            _hub = new MyHub();
         }
 
         public class BodyForInvitation
@@ -46,7 +44,6 @@ namespace web_service_api.Controllers
                 await _contactService.AddContact(contact);
             }
             
-            await _hub.render(payload.to);
         }
 
         [HttpPost("transfer")]
@@ -60,7 +57,6 @@ namespace web_service_api.Controllers
             }
             else await _contactService.ChangeLast(payload.from, payload.content, DateTime.Now, payload.to);
 
-            await _hub.render(payload.to);
         }
 
     }
