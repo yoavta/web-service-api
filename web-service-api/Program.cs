@@ -14,7 +14,7 @@ builder.Services.AddScoped<IContactService, ContactService>();
 builder.Services.AddScoped<IMessagesService,MessageService>();
 builder.Services.AddScoped<IUsersService, UserService>();
 builder.Services.AddScoped<IConnectedUserService, ConnectedUserService>();
-builder.Services.AddDbContext<WebServiceContext>();
+builder.Services.AddDbContext<WebServiceContext>(ServiceLifetime.Transient);
 
 builder.Services.AddMvcCore();
 builder.Services.AddSignalR();

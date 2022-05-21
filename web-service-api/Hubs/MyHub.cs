@@ -26,8 +26,5 @@ namespace web_service_api.Hubs
 
             }
         }
-
-
-
     }
 }

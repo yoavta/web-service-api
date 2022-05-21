@@ -120,17 +120,11 @@ namespace web_service_api.Controllers
         public async Task<ICollection<Message>?> getMessagesType(string id)
         {
 
-            User userConnected;
+            User userConnected =  _user.GetUser();
             Request.Headers.TryGetValue("connectedUser", out var connectedUser);
-
             if (connectedUser.Any())
             {
                 userConnected = await _userService.getUser(connectedUser[0]);
-            }
-
-            else
-            {
-                userConnected = _user.GetUser();
             }
 
             var messages = await _messageService.getMessagesOfUser(userConnected, id);
