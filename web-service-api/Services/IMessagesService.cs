@@ -5,7 +5,7 @@
         public Task add(string user, Message message);
         public Task remove(int messageId);
 
-        public Task<ICollection<Message>?> getMessagesOfUser(User user, string id);
+        public Task<ICollection<Message>?> getMessagesOfUser(string user, string id);
 
         public Task<Message?> getSpecificMessage(int messageId);
 

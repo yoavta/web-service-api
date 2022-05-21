@@ -49,10 +49,12 @@ namespace web_service_api.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ICollection<Message>?> getMessagesOfUser(User user, string id)
+        public async Task<ICollection<Message>?> getMessagesOfUser(string user, string id)
         {
-            var messages = await _context.Messages.Where(x => (x.sender == user.UserName && x.reciver == id) || (x.sender == id && x.reciver == user.UserName)).OrderBy(x => x.created).ToListAsync();
-                
+            var messages1 = await _context.Messages.Where(x => (x.sender == user && x.reciver == id)).ToListAsync();
+            var messages2 = await _context.Messages.Where(x => (x.sender == id && x.reciver == user)).ToListAsync();
+            messages1.AddRange(messages2);
+            var messages = messages1.OrderBy((x) => x.created).ToList();
             return messages;
         }
 

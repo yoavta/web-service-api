@@ -35,18 +35,22 @@ namespace web_service_api.Controllers
         public async Task<ICollection<getByApiMessage>?> getAllMessages(string id)
         {
 
-            User userConnected = _user.GetUser();
 
+            string userName;
             Request.Headers.TryGetValue("connectedUser", out var connectedUser);
-            if (connectedUser.Any())
+            if (!connectedUser.Any())
             {
-                userConnected = await _userService.getUser(connectedUser[0]);
+                userName = connectedUser[0];
             }
-         
+            else
+            {
+                userName = _user.GetUser().UserName;
+            }
 
 
 
-            var messages = await _messageService.getMessagesOfUser(userConnected, id);
+
+            var messages = await _messageService.getMessagesOfUser(userName, id);
             ICollection<getByApiMessage> result = new List<getByApiMessage>();
             foreach (Message message in messages)
             {
@@ -120,14 +124,18 @@ namespace web_service_api.Controllers
         public async Task<ICollection<Message>?> getMessagesType(string id)
         {
 
-            User userConnected =  _user.GetUser();
+            string userName;
             Request.Headers.TryGetValue("connectedUser", out var connectedUser);
             if (connectedUser.Any())
             {
-                userConnected = await _userService.getUser(connectedUser[0]);
+                userName = connectedUser[0];
+            }
+            else
+            {
+                userName = _user.GetUser().UserName;
             }
 
-            var messages = await _messageService.getMessagesOfUser(userConnected, id);
+            var messages = await _messageService.getMessagesOfUser(userName, id);
             return messages;
         }
 
