@@ -1,31 +1,31 @@
 ﻿<Properties StartupConfiguration="{3EB5F525-A206-46FE-9FFE-2B56A635AFB8}|Default">
+  <MonoDevelop.Ide.ItemProperties.web-service-api PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.web-service-api PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="web-service-api/Services/MessageService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="web-service-api/Controllers/UtilsController.cs">
     <Files>
       <File FileName="web-service-api/Controllers/UserController.cs" Line="28" Column="37" />
-      <File FileName="web-service-api/Controllers/MessageController.cs" Line="130" Column="58" />
+      <File FileName="web-service-api/Controllers/MessageController.cs" Line="58" Column="64" />
       <File FileName="web-service-api/Controllers/ContactsController.cs" Line="66" Column="1" />
-      <File FileName="web-service-api/Controllers/UtilsController.cs" Line="17" Column="95" />
+      <File FileName="web-service-api/Controllers/UtilsController.cs" Line="58" Column="59" />
       <File FileName="web-service-api/Program.cs" Line="31" Column="1" />
       <File FileName="web-service-api/web-service-context.cs" Line="22" Column="47" />
       <File FileName="web-service-api/Models/User.cs" Line="18" Column="1" />
       <File FileName="web-service-api/Services/IUsersService.cs" Line="18" Column="27" />
       <File FileName="web-service-api/Services/UserService.cs" Line="27" Column="31" />
-      <File FileName="web-service-api/Services/ConnectedUserService.cs" Line="27" Column="1" />
+      <File FileName="web-service-api/Services/ConnectedUserService.cs" Line="18" Column="10" />
       <File FileName="web-service-api/Models/Contact.cs" Line="1" Column="1" />
       <File FileName="web-service-api/Services/IContactService.cs" Line="10" Column="44" />
       <File FileName="web-service-api/Controllers/ConnectedUserController.cs" Line="1" Column="1" />
       <File FileName="web-service-api/Services/UtilsSrevice.cs" Line="1" Column="1" />
-      <File FileName="web-service-api/Hubs/MyHub.cs" Line="28" Column="10" />
-      <File FileName="web-service-api/Services/MessageService.cs" Line="21" Column="1" />
+      <File FileName="web-service-api/Hubs/MyHub.cs" Line="27" Column="14" />
+      <File FileName="web-service-api/Services/MessageService.cs" Line="67" Column="10" />
       <File FileName="web-service-api/Services/IConnectedUserService.cs" Line="8" Column="1" />
-      <File FileName="web-service-api/Services/IMessagesService.cs" Line="8" Column="44" />
+      <File FileName="web-service-api/Services/IMessagesService.cs" Line="15" Column="9" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -40,9 +40,7 @@
               <Node name="Migrations" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Properties" expanded="True" />
-              <Node name="Services" expanded="True">
-                <Node name="MessageService.cs" selected="True" />
-              </Node>
+              <Node name="Services" expanded="True" />
             </Node>
           </Node>
         </State>

@@ -38,12 +38,11 @@ namespace web_service_api.Controllers
 
         public async Task invitations([FromBody] BodyForInvitation payload)
         {
-            Contact contact = new Contact() {  id =payload.to, myContact = payload.from , name = payload.to, server = payload.server};
-            if( await _contactService.getContacts(payload.from) == null)
-            {
-                await _contactService.AddContact(contact);
-            }
-            
+            Contact contact = new Contact() { id = payload.from, myContact = payload.to, name = payload.from, server = "localhost:7093" };
+            //Contact contact1 = new Contact() { id = payload.from, myContact = payload.to, name = payload.from, server = "localhost:7093" };
+            //await _contactService.AddContact(contact1);
+            await _contactService.AddContact(contact);
+
         }
 
         [HttpPost("transfer")]
@@ -54,8 +53,9 @@ namespace web_service_api.Controllers
             if (await _contactService.getContacts(payload.from) == null)
             {
                 await _messageService.add(payload.from, message);
+                await _contactService.ChangeLast(payload.to, payload.content, DateTime.Now, payload.from);
             }
-            else await _contactService.ChangeLast(payload.from, payload.content, DateTime.Now, payload.to);
+            else await _contactService.ChangeLast(payload.to, payload.content, DateTime.Now, payload.from);
 
         }
 
