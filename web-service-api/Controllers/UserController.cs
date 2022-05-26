@@ -37,7 +37,14 @@ namespace web_service_api.Controllers
             var theUser = await _userService.getUser(user);
             return theUser;
         }
+
+        class result
+        {
+            bool res;
+        }
+
         
+
 
         [HttpGet("{user}/{password}")]
 
